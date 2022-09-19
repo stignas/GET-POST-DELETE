@@ -20,8 +20,6 @@ async function addProduct(event) {
     if (response.ok) {
       alert("Produktas sėkmingai pridėtas");
       window.location.replace("./index.html");
-    } else {
-      throw new Error(res.statusText);
     }
   } catch (error) {
     console.log(error);
