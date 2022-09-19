@@ -1,8 +1,8 @@
 async function addProduct(event) {
   event.preventDefault();
-  const inputImg = document.querySelector("[name=img]").value;
-  const inputPrice = document.querySelector("[name=price]").value;
-  const inputTitle = document.querySelector("[name=title]").value;
+  const inputImg = document.querySelector("[name=img]").value.trim();
+  const inputPrice = document.querySelector("[name=price]").value.trim();
+  const inputTitle = document.querySelector("[name=title]").value.trim();
 
   const headers = { "Content-type": "application/json" };
   const postBody = JSON.stringify({

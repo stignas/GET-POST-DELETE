@@ -4,6 +4,7 @@ async function fetchData() {
   dataJSON.forEach((product) => {
     createProductCard(product);
   });
+  console.log(dataJSON);
 }
 
 function createProductCard(product) {
@@ -32,7 +33,6 @@ function createProductCard(product) {
 }
 
 async function deleteProduct(event) {
-  console.log("kazkas vyksta");
   const deleteId = event.target.dataset.id;
   try {
     const response = await fetch(
