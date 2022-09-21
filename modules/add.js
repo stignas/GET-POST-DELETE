@@ -19,7 +19,9 @@ async function addProduct(event) {
     });
     if (response.ok) {
       alert("Produktas sėkmingai pridėtas");
-      window.location.replace("./index.html");
+      window.location.replace("./index.html"); // window.location.href = "" - galimbybe grizti su "back" mygtuku
+    } else {
+      alert("Įvyko klaida. Produktas nepridėtas.");
     }
   } catch (error) {
     console.log(error);

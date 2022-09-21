@@ -1,10 +1,15 @@
-async function fetchData() {
-  const data = await fetch("https://golden-whispering-show.glitch.me");
-  const dataJSON = await data.json();
-  dataJSON.forEach((product) => {
-    createProductCard(product);
-  });
-  console.log(dataJSON);
+async function getProducts() {
+  try {
+    const data = await fetch("https://golden-whispering-show.glitch.me");
+    if (data.ok) {
+      const dataJSON = await data.json();
+      dataJSON.forEach((product) => {
+        createProductCard(product);
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function createProductCard(product) {
@@ -25,7 +30,6 @@ function createProductCard(product) {
   const buttonElement = document.createElement(`button`);
   buttonElement.dataset.id = `${product.id}`;
   buttonElement.innerText = "Ištrinti";
-
   buttonElement.addEventListener("click", deleteProduct);
 
   productElement.append(imgElement, titleElement, priceElement, buttonElement);
@@ -33,7 +37,9 @@ function createProductCard(product) {
 }
 
 async function deleteProduct(event) {
+  event.preventDefault();
   const deleteId = event.target.dataset.id;
+
   try {
     const response = await fetch(
       "https://golden-whispering-show.glitch.me/" + deleteId,
@@ -48,10 +54,12 @@ async function deleteProduct(event) {
           document.getElementById("container").removeChild(products[i]);
         }
       }
+    } else {
+      console.log("Įvyko klaida.");
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-fetchData();
+getProducts();
